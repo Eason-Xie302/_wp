@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>謝易宸 | 個人簡歷</title>
+    <style>
+        :root {
+            --bg-color: #fcfcfc;
+            --text-color: #333333;
+            --accent-color: #5a7184;
+            --container-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'LiHei Pro', 'Microsoft JhengHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--container-bg);
+            max-width: 600px;
+            width: 90%;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0 0 10px 0;
+            color: var(--accent-color);
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin: 0;
+        }
+
+        section {
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .label {
+            font-weight: bold;
+            min-width: 80px;
+            color: #555;
+        }
+
+        .contact-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: #3b4d5a;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>謝易宸</h1>
+            <p class="subtitle">金門大學 資訊工程學系</p>
+        </header>
+
+        <section>
+            <h2>基本資料</h2>
+            <ul>
+                <li><span class="label">生日：</span> 96年03月02日</li>
+                <li><span class="label">學歷：</span> 
+                    <div>
+                        金門大學 資訊工程學系 (大一就讀中)<br>
+                        華江高中 (畢業)
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>興趣愛好</h2>
+            <ul>
+                <li>🎮 玩線上遊戲</li>
+                <li>📺 看動漫</li>
+                <li>📚 閱讀小說</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>聯絡方式</h2>
+            <ul>
+                <li><span class="label">Email：</span> <a href="mailto:s111410514@student.nqu.edu.tw" class="contact-link">s111410514@student.nqu.edu.tw</a></li>
+            </ul>
+        </section>
+
+        <footer>
+            &copy; 2026 謝易宸. All Rights Reserved.
+        </footer>
+    </div>
+
+</body>
+</html>
