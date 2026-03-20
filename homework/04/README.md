@@ -2,6 +2,33 @@
 
 AI 問答 -- https://gemini.google.com/share/f6957dc97c02
 
+## 我的測試結果
+
+--- 執行 01.js ---
+小明 及格了！
+--- 執行 02.js ---
+100
+--- 執行 03.js ---
+找到了！在索引值 3 的位置。
+--- 執行 04.js ---
+阿傑 是成年人。
+美美 是成年人。
+--- 執行 05.js ---
+{ name: '勇者', role: '劍士', level: 99 }
+--- 執行 06.js ---
+[
+  { item: '滑鼠', price: 400 },
+  { item: '鍵盤', price: 900, isDiscounted: true }
+]
+--- 執行 07.js ---
+{ remainingMoney: 0, wins: 2 }
+--- 執行 08.js ---
+{"volume":80,"language":"zh-TW","theme":"dark","lastUpdated":"2026-03-20T03:45:46.235Z"}
+--- 執行 09.js ---
+{ name: 'Beta', score: 2200 }
+--- 執行 10.js ---
+{ totalItemsProcessed: 2, totalValue: 900 }
+
 ## 摘要
 
 這是一份為你量身打造的 10 個 JavaScript 程式練習題！這些題目由淺入深，並且涵蓋了你所要求的 `if`、`for`、`while`、`function`、`json`、`array` 與 `object` 觀念。
