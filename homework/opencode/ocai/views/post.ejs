@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= post.title %> - 𝕯𝖍𝖗𝖊𝖆𝖉𝖘</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      padding: 20px;
+      border-right: 1px solid #2e2e2e;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+    .sidebar h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      padding: 10px;
+    }
+    .nav-item {
+      display: block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      margin-bottom: 5px;
+      transition: background 0.2s;
+    }
+    .nav-item:hover { background: #1a1a1a; }
+    .btn {
+      display: inline-block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      background: #000;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      margin-top: 20px;
+    }
+    .btn:hover { background: #1a1a1a; }
+    .main {
+      flex: 1;
+      padding: 20px;
+      max-width: 600px;
+      border-right: 1px solid #2e2e2e;
+    }
+    .back-btn {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .back-btn:hover { color: #667eea; }
+    .post-card {
+      background: #161616;
+      border-radius: 16px;
+      padding: 25px;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+      margin-right: 15px;
+    }
+    .user-info { flex: 1; }
+    .username { font-weight: 600; font-size: 18px; }
+    .post-time { color: #888; font-size: 14px; }
+    .post-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .post-content {
+      color: #e0e0e0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .post-content img { max-width: 100%; border-radius: 12px; margin: 15px 0; }
+    .post-content h1, .post-content h2, .post-content h3 { margin: 20px 0 10px; }
+    .post-content code { background: #2a2a2a; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+    .post-content pre { background: #2a2a2a; padding: 15px; border-radius: 12px; overflow-x: auto; }
+    .post-content pre code { background: none; padding: 0; }
+    .post-content blockquote { border-left: 3px solid #667eea; padding-left: 15px; color: #888; margin: 15px 0; }
+    .post-content ul, .post-content ol { padding-left: 25px; margin: 10px 0; }
+    .post-content a { color: #667eea; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>𝕯𝖍𝖗𝖊𝖆𝖉𝖘</h1>
+      <a href="/" class="nav-item">🏠 首頁</a>
+      <% if (loggedIn) { %>
+        <a href="/profile" class="nav-item">👤 個人資料</a>
+        <a href="/new" class="nav-item">✏️ 發布貼文</a>
+        <form action="/logout" method="GET" style="margin-top: auto;">
+          <button type="submit" class="btn">🚪 登出</button>
+        </form>
+      <% } else { %>
+        <a href="/login" class="nav-item">🔑 登入</a>
+        <a href="/register" class="nav-item">📝 註冊</a>
+      <% } %>
+    </div>
+    
+    <div class="main">
+      <a href="<%= post.user_id === userId ? '/profile' : '/' %>" class="back-btn">← 返回</a>
+      
+      <div class="post-card">
+        <div class="post-header">
+          <div class="avatar"><%= post.author ? post.author.charAt(0).toUpperCase() : '?' %></div>
+          <div class="user-info">
+            <div class="username">@<%= post.author || 'unknown' %></div>
+            <div class="post-time"><%= new Date(post.created_at).toLocaleString('zh-TW') %></div>
+          </div>
+        </div>
+        <% if (post.title) { %>
+          <div class="post-title"><%= post.title %></div>
+        <% } %>
+        <div class="post-content"><%- post.html %></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

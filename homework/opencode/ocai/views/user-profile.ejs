@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= userInfo.username %> - 𝕯𝖍𝖗𝖊𝖆𝖉𝖘</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      padding: 20px;
+      border-right: 1px solid #2e2e2e;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+    .sidebar h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      padding: 10px;
+    }
+    .nav-item {
+      display: block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      margin-bottom: 5px;
+      transition: background 0.2s;
+    }
+    .nav-item:hover { background: #1a1a1a; }
+    .btn {
+      display: inline-block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      background: #000;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      margin-top: 20px;
+    }
+    .btn:hover { background: #1a1a1a; }
+    .main {
+      flex: 1;
+      padding: 20px;
+      max-width: 600px;
+      border-right: 1px solid #2e2e2e;
+    }
+    .profile-header {
+      background: #161616;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .profile-name { font-size: 24px; font-weight: 600; margin-bottom: 5px; }
+    .profile-username { color: #888; font-size: 16px; }
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #2e2e2e;
+    }
+    .post-card {
+      background: #161616;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 12px;
+    }
+    .username { font-weight: 600; }
+    .username a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .username a:hover { color: #667eea; }
+    .post-time { color: #888; font-size: 14px; }
+    .post-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .post-content {
+      color: #e0e0e0;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .post-actions {
+      display: flex;
+      gap: 20px;
+      margin-top: 15px;
+    }
+    .action-btn {
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .action-btn:hover { color: #fff; }
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+    }
+    .back-link {
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .back-link:hover { color: #667eea; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>𝕯𝖍𝖗𝖊𝖆𝖉𝖘</h1>
+      <a href="/" class="nav-item">🏠 公共貼文</a>
+      <% if (loggedIn) { %>
+        <a href="/my-posts" class="nav-item">👤 我的貼文</a>
+        <a href="/new" class="nav-item">✏️ 發布貼文</a>
+        <form action="/logout" method="GET" style="margin-top: auto;">
+          <button type="submit" class="btn">🚪 登出</button>
+        </form>
+      <% } else { %>
+        <a href="/login" class="nav-item">🔑 登入</a>
+        <a href="/register" class="nav-item">📝 註冊</a>
+      <% } %>
+    </div>
+    
+    <div class="main">
+      <a href="/" class="back-link">← 返回公共貼文</a>
+      
+      <div class="profile-header">
+        <div class="profile-avatar"><%= userInfo.username.charAt(0).toUpperCase() %></div>
+        <div class="profile-name"><%= userInfo.display_name || userInfo.username %></div>
+        <div class="profile-username">@<%= userInfo.username %></div>
+      </div>
+      
+      <h2 class="section-title">@<%= userInfo.username %> 的貼文</h2>
+      <% if (posts.length === 0) { %>
+        <div class="empty-state">
+          <p>還沒有任何貼文</p>
+        </div>
+      <% } else { %>
+        <% posts.forEach(post => { %>
+          <div class="post-card">
+            <div class="post-header">
+              <div class="avatar"><%= post.author.charAt(0).toUpperCase() %></div>
+              <div>
+                <div class="username">@<%= post.author %></div>
+                <div class="post-time"><%= new Date(post.created_at).toLocaleString('zh-TW') %></div>
+              </div>
+            </div>
+            <% if (post.title) { %>
+              <div class="post-title"><%= post.title %></div>
+            <% } %>
+            <div class="post-content"><%- post.content.substring(0, 200) %><%= post.content.length > 200 ? '...' : '' %></div>
+            <div class="post-actions">
+              <a href="/post/<%= post.id %>" class="action-btn">💬 閱讀更多</a>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

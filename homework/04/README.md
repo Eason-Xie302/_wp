@@ -3,7 +3,7 @@
 AI 問答 -- https://gemini.google.com/share/f6957dc97c02
 
 ## 我的測試結果
-
+```
 --- 執行 01.js ---
 小明 及格了！
 --- 執行 02.js ---
@@ -28,7 +28,7 @@ AI 問答 -- https://gemini.google.com/share/f6957dc97c02
 { name: 'Beta', score: 2200 }
 --- 執行 10.js ---
 { totalItemsProcessed: 2, totalValue: 900 }
-
+```
 ## 摘要
 
 這是一份為你量身打造的 10 個 JavaScript 程式練習題！這些題目由淺入深，並且涵蓋了你所要求的 `if`、`for`、`while`、`function`、`json`、`array` 與 `object` 觀念。
