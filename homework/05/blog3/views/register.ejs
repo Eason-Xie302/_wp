@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>註冊 - 𝕯𝖍𝖗𝖊𝖆𝖉𝖘</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .logo h1 {
+      font-size: 48px;
+    }
+    .login-card {
+      background: #161616;
+      border-radius: 16px;
+      padding: 30px;
+    }
+    .login-title {
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #888;
+    }
+    .form-group input {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #2e2e2e;
+      border-radius: 12px;
+      padding: 15px;
+      color: #fff;
+      font-size: 16px;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    .btn-submit {
+      background: #667eea;
+      color: #fff;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s;
+    }
+    .btn-submit:hover { transform: scale(1.02); }
+    .error {
+      background: #3d1a1a;
+      color: #ff6b6b;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .switch-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #888;
+    }
+    .switch-link a {
+      color: #667eea;
+      text-decoration: none;
+    }
+    .switch-link a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <h1>𝕯𝖍𝖗𝖊𝖆𝖉𝖘</h1>
+    </div>
+    <div class="login-card">
+      <h2 class="login-title">建立帳戶</h2>
+      <% if (error) { %>
+        <div class="error"><%= error %></div>
+      <% } %>
+      <form action="/register" method="POST">
+        <div class="form-group">
+          <label>用戶名</label>
+          <input type="text" name="username" required placeholder="選擇用戶名">
+        </div>
+        <div class="form-group">
+          <label>密碼</label>
+          <input type="password" name="password" required placeholder="設定密碼">
+        </div>
+        <button type="submit" class="btn-submit">註冊</button>
+      </form>
+      <p class="switch-link">已有帳戶？<a href="/login">立即登入</a></p>
+    </div>
+  </div>
+</body>
+</html>

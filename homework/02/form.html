@@ -3,182 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>開發者社群會員註冊</title>
+    <title>會員註冊</title>
     <style>
-        /* 基礎重置與全域設定 */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
+        /* 1. 基礎頁面設定與置中排版 */
         body {
-            /* 讓背景充滿視窗，並使用 Flexbox 將內容垂直與水平置中 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #e9ecef;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center; /* 水平置中 */
+            align-items: center;     /* 垂直置中 */
+            min-height: 100vh;       /* 確保高度至少為整個視窗 */
         }
 
-        /* 卡片主體設計 */
+        /* 2. 卡片主體樣式 */
         .form-card {
             background-color: #ffffff;
             width: 100%;
-            max-width: 500px;
-            padding: 40px;
+            max-width: 450px;
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* 柔和的卡片陰影 */
+            box-sizing: border-box;
         }
 
         .form-card h2 {
             text-align: center;
-            color: #333;
+            color: #333333;
+            margin-top: 0;
             margin-bottom: 25px;
-            font-size: 1.5rem;
         }
 
-        /* 表單群組，用於產生每個輸入區塊的間距 */
+        /* 3. 表單元素群組 */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        /* 標籤樣式 */
-        label {
+        .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #555;
+            margin-bottom: 5px;
             font-weight: 600;
-            font-size: 0.9rem;
+            color: #555555;
+            font-size: 14px;
         }
 
-        /* 文字、密碼、日期、下拉選單、多行文字的共通樣式 */
+        /* 4. 共用輸入框樣式 */
         input[type="text"],
         input[type="password"],
         input[type="date"],
         select,
         textarea {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ced4da;
+            padding: 10px;
+            border: 1px solid #cccccc;
             border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.2s;
+            box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
+            font-size: 14px;
+            transition: border-color 0.3s ease;
         }
 
-        input[type="text"]:focus,
-        input[type="password"]:focus,
-        input[type="date"]:focus,
-        select:focus,
-        textarea:focus {
+        /* 聚焦時的邊框顏色變化 */
+        input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #4dabf7;
-            box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.2);
+            border-color: #4a90e2;
+            box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
         }
 
-        /* 單選與核取方塊的排版 */
+        textarea {
+            resize: vertical; /* 允許使用者垂直拉伸，禁止水平拉伸 */
+            min-height: 80px;
+        }
+
+        /* 5. 特殊輸入項排版 (單選、核取) */
         .inline-group {
             display: flex;
-            gap: 15px;
             align-items: center;
+            gap: 15px; /* 元素之間的間距 */
         }
 
         .inline-group label {
-            display: flex;
-            align-items: center;
+            display: inline;
             font-weight: normal;
             margin-bottom: 0;
             cursor: pointer;
         }
 
-        .inline-group input {
-            margin-right: 6px;
-        }
-
-        /* 特殊輸入控制項微調 */
+        /* 6. HTML5 進階輸入項微調 */
         input[type="file"] {
-            font-size: 0.9rem;
+            font-size: 13px;
             color: #555;
         }
 
-        input[type="range"] {
-            width: 100%;
-            cursor: pointer;
+        .color-range-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
         }
 
         input[type="color"] {
-            width: 50px;
-            height: 35px;
-            padding: 2px;
-            border: 1px solid #ced4da;
-            border-radius: 6px;
+            border: none;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border-radius: 4px;
             cursor: pointer;
         }
 
-        /* 提交按鈕設計 */
+        input[type="range"] {
+            flex-grow: 1;
+        }
+
+        /* 7. 提交按鈕樣式 */
         .submit-btn {
             width: 100%;
-            padding: 12px;
-            background-color: #2b8a3e;
+            background-color: #4a90e2;
             color: white;
+            padding: 12px;
             border: none;
             border-radius: 6px;
-            font-size: 1.1rem;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 10px;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
         }
 
         .submit-btn:hover {
-            background-color: #237032;
+            background-color: #357abd;
         }
     </style>
 </head>
 <body>
 
     <div class="form-card">
-        <h2>會員註冊</h2>
-        <form action="#" method="post">
+        <h2>建立新帳號</h2>
+        <form action="#" method="POST">
             
             <div class="form-group">
                 <label for="username">使用者名稱</label>
-                <input type="text" id="username" name="username" placeholder="請輸入帳號" required>
+                <input type="text" id="username" name="username" placeholder="請輸入您的名稱" required>
             </div>
 
             <div class="form-group">
                 <label for="password">密碼</label>
-                <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
+                <input type="password" id="password" name="password" placeholder="請設定 8 碼以上的密碼" required>
             </div>
 
             <div class="form-group">
-                <label>目前身分</label>
-                <div class="inline-group">
-                    <label><input type="radio" name="role" value="student" checked> 學生</label>
-                    <label><input type="radio" name="role" value="employed"> 在職工程師</label>
-                    <label><input type="radio" name="role" value="other"> 其他</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="department">就讀/畢業科系</label>
-                <select id="department" name="department">
-                    <option value="" disabled selected>請選擇科系...</option>
-                    <option value="csie">資訊工程學系</option>
-                    <option value="ee">電機工程學系</option>
-                    <option value="im">資訊管理學系</option>
+                <label for="job">職業領域</label>
+                <select id="job" name="job">
+                    <option value="">請選擇...</option>
+                    <option value="student">學生</option>
+                    <option value="engineer">工程師</option>
+                    <option value="designer">設計師</option>
                     <option value="other">其他</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>擅長的技術或工具 (可複選)</label>
+                <label>性別</label>
                 <div class="inline-group">
-                    <label><input type="checkbox" name="skills" value="js"> JavaScript</label>
-                    <label><input type="checkbox" name="skills" value="c"> C</label>
-                    <label><input type="checkbox" name="skills" value="nodejs"> C++</label>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">男性</label>
+                    
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">女性</label>
+
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">不透露</label>
                 </div>
             </div>
 
@@ -188,26 +182,29 @@
             </div>
 
             <div class="form-group">
-                <label for="avatar">上傳個人大頭貼</label>
-                <input type="file" id="avatar" name="avatar" accept="image/*">
+                <label for="avatar">上傳個人頭像</label>
+                <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
             </div>
 
             <div class="form-group">
-                <label for="experience">開發經驗熟悉度</label>
-                <input type="range" id="experience" name="experience" min="1" max="10" value="5">
+                <label>介面偏好設定</label>
+                <div class="color-range-group">
+                    <input type="color" id="theme-color" name="theme-color" value="#4a90e2" title="選擇主題顏色">
+                    <input type="range" id="fontSize" name="fontSize" min="12" max="24" value="16" title="字體大小">
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="theme_color">選擇個人網誌主題色</label>
-                <input type="color" id="theme_color" name="theme_color" value="#4dabf7">
+                <label for="bio">個人簡介</label>
+                <textarea id="bio" name="bio" placeholder="簡單介紹一下你自己吧..."></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="bio">簡短自我介紹</label>
-                <textarea id="bio" name="bio" rows="4" placeholder="請描述一下你的興趣或開發經驗..."></textarea>
+            <div class="form-group inline-group" style="margin-top: 20px;">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms" style="font-size: 13px;">我已閱讀並同意<a href="#">服務條款</a>與隱私權政策</label>
             </div>
 
-            <button type="submit" class="submit-btn">完成註冊</button>
+            <button type="submit" class="submit-btn">立即註冊</button>
 
         </form>
     </div>

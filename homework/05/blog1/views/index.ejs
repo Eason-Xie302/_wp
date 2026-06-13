@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog V1 測試原型</title>
+</head>
+<body>
+    <h1>網誌系統 - V1 測試原型</h1>
+    <p style="color: red;">[開發中] 目前尚未載入 CSS 樣式表，僅測試資料庫連線。</p>
+    <hr>
+    
+    <h2>所有文章列表</h2>
+    <ul>
+        <% posts.forEach(post => { %>
+            <li>
+                <strong>標題：<%= post.title %></strong> 
+                (作者：<%= post.author %>)
+                <p>內容：<%= post.content %></p>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

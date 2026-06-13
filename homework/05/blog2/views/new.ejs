@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>發布貼文 - 𝕯𝖍𝖗𝖊𝖆𝖉𝖘</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      padding: 20px;
+      border-right: 1px solid #2e2e2e;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+    .sidebar h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      padding: 10px;
+    }
+    .nav-item {
+      display: block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      margin-bottom: 5px;
+      transition: background 0.2s;
+    }
+    .nav-item:hover { background: #1a1a1a; }
+    .btn {
+      display: inline-block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      background: #000;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      margin-top: 20px;
+    }
+    .btn:hover { background: #1a1a1a; }
+    .main {
+      flex: 1;
+      padding: 20px;
+      max-width: 600px;
+      border-right: 1px solid #2e2e2e;
+    }
+    .page-title {
+      font-size: 24px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #2e2e2e;
+    }
+    .post-form {
+      background: #161616;
+      border-radius: 16px;
+      padding: 25px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #888;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid #2e2e2e;
+      border-radius: 12px;
+      padding: 15px;
+      color: #fff;
+      font-size: 16px;
+      font-family: inherit;
+    }
+    .form-group textarea {
+      min-height: 200px;
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    .btn-submit {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn-submit:hover { transform: scale(1.02); }
+    .btn-cancel {
+      background: transparent;
+      color: #888;
+      border: 1px solid #2e2e2e;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .btn-cancel:hover { border-color: #fff; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>𝕯𝖍𝖗𝖊𝖆𝖉𝖘</h1>
+      <a href="/" class="nav-item">🏠 首頁</a>
+      <a href="/profile" class="nav-item">👤 個人資料</a>
+      <a href="/new" class="nav-item active">✏️ 發布貼文</a>
+      <form action="/logout" method="GET" style="margin-top: auto;">
+        <button type="submit" class="btn">🚪 登出</button>
+      </form>
+    </div>
+    
+    <div class="main">
+      <h2 class="page-title">發布新貼文</h2>
+      <div class="post-form">
+        <form action="/new" method="POST">
+          <div class="form-group">
+            <label>標題（可選）</label>
+            <input type="text" name="title" placeholder="輸入標題...">
+          </div>
+          <div class="form-group">
+            <label>內容（支援 Markdown）</label>
+            <textarea name="content" placeholder="分享你的想法...&#10;&#10;支援 Markdown 語法：&#10;# 標題&#10;**粗體**&#10;*斜體*&#10;`程式碼`"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">發布</button>
+          <a href="/" class="btn-cancel">取消</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

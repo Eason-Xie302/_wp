@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog V2 會員版</title>
+    <style>
+        body { font-family: '微軟正黑體', sans-serif; background-color: #f0f8ff; margin: 0; padding: 20px; color: #333; }
+        .navbar { background-color: #007bff; color: white; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; }
+        .navbar a { color: white; text-decoration: none; font-weight: bold; margin-left: 15px; }
+        .post-card { background: white; border: 1px solid #ddd; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .author { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>進階網誌系統 V2</h2>
+        <div>
+            <a href="/login">登入</a>
+            <a href="/register">註冊帳號</a>
+        </div>
+    </div>
+
+    <% posts.forEach(post => { %>
+        <div class="post-card">
+            <h3 style="margin-top: 0; color: #0056b3;"><%= post.title %></h3>
+            <div class="author">發文者：<%= post.author %></div>
+            <p><%= post.content %></p>
+        </div>
+    <% }) %>
+
+</body>
+</html>
