@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>舒爾特方格 Schulte Grid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <h1 class="app-title">舒爾特方格</h1>
+            
+            <section class="card settings-card">
+                <h2>遊戲設定</h2>
+                
+                <div class="form-group">
+                    <label for="difficulty">難度選擇：</label>
+                    <select id="difficulty">
+                        <option value="3">3 x 3 (新手)</option>
+                        <option value="4">4 x 4 (初階)</option>
+                        <option value="5" selected>5 x 5 (標準)</option>
+                        <option value="6">6 x 6 (進階)</option>
+                        <option value="7">7 x 7 (地獄)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="interference-mode">
+                        🎨 視覺干擾模式
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="chaos-mode">
+                        🌪️ 隨機互換模式 (每 1.5 秒觸發)
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="blind-mode">
+                        👁️ 盲解模式 (倒數後隱藏按錯+1秒)
+                    </label>
+                </div>
+                
+                <button id="start-btn" class="btn btn-primary">開始遊戲</button>
+            </section>
+
+            <section class="card status-card">
+                <div class="status-item">
+                    <span class="status-label">時間 / 倒數</span>
+                    <div id="timer-display" class="status-value highlight">00:00.00</div>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">下一個數字</span>
+                    <div id="next-target" class="status-value huge-text">-</div>
+                </div>
+            </section>
+
+            <section class="card leaderboard-card">
+                <h2>🏆 排行榜 (<span id="leaderboard-diff-label">5x5</span>)</h2>
+                <ul id="leaderboard-list" class="leaderboard-list">
+                    <li class="empty-msg">暫無紀錄</li>
+                </ul>
+            </section>
+        </aside>
+
+        <main class="game-area">
+            <div id="grid-container" class="grid-container disabled"></div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
